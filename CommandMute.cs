@@ -63,17 +63,19 @@ namespace fr34kyn01535.ChatControl
         {
             UnturnedPlayer player = command.GetUnturnedPlayerParameter(0);
             if (player == null) UnturnedChat.Say(caller, ChatControl.Instance.Translate("command_player_not_found"));
-            ((ChatControlPlayerComponent)player.GetComponent<ChatControlPlayerComponent>()).IsMuted = true;
-
-            if (ChatControl.Instance.Configuration.Instance.AnnounceMute)
-            {
-                UnturnedChat.Say(ChatControl.Instance.Translate("command_mute", player.DisplayName),ChatControl.MessageColor);
-            }
             else
             {
-                UnturnedChat.Say(caller, ChatControl.Instance.Translate("command_mute", player.DisplayName), ChatControl.MessageColor);
-            }
+                ((ChatControlPlayerComponent)player.GetComponent<ChatControlPlayerComponent>()).IsMuted = true;
 
+                if (ChatControl.Instance.Configuration.Instance.AnnounceMute)
+                {
+                    UnturnedChat.Say(ChatControl.Instance.Translate("command_mute", player.DisplayName),ChatControl.MessageColor);
+                }
+                else
+                {
+                    UnturnedChat.Say(caller, ChatControl.Instance.Translate("command_mute", player.DisplayName), ChatControl.MessageColor);
+                }
+            }
         }
     }
 }
